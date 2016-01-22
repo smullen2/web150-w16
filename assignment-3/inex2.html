@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+    </head>
+    <body>
+<script>
+var startgame = confirm("You're getting chased by a motorcycle gang. You come to a door to hide. Press OK to open and go in.");
+
+if (startgame) {
+    //go into garage
+    var vehicle = prompt("You see 3 getaway vehicles. Do you want the hummer, the ducati or the porsche?")
+    if (vehicle == 'hummer') {
+        console.log("It won't start and you've been caught! THE END");
+        document.write("It won't start and you've been caught! THE END");
+    } else if (vehicle == 'ducati') {
+        console.log("It's got a flat tire and you're caught! THE END");
+        document.write("It's got a flat tire and you're caught! THE END");
+    } else {
+        console.log("It's fast and you're making a break for it!");
+        document.write("It's fast and you're making a break for it!");
+        
+        var hours = "You have to stop, rest and hide. How many hours are you going to rest for?";
+        var rest = prompt(hours);
+        rest = Number(rest);
+        
+        if (rest <= 2) {
+            console.log("You wake while it's still dark, and get away!");
+            document.write("You wake while it's still dark, and get away!");
+        } else {
+            console.log("You slept until daylight, and were spotted by local villagers and turned over to the gang.");
+            document.write("You slept until daylight, and were spotted by local villagers and turned over to the gang.");
+        }
+        console.log("THE END.");
+        document.write("THE END.")
+        
+    }
+} else {
+    //didn't go in
+    console.log("And that's the world's shortest fable. THE END.")
+    document.write("And that's the world's shortest fable. THE END.")
+}
+</script>
+    </body>
+</html>

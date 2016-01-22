@@ -1,45 +1,48 @@
-<!DOCTYPE html>
 <html>
     <head>
         <title> </title>
     </head>
     <body>
-<script>
-var startgame = confirm("You're getting chased by a motorcycle gang. You come to a door to hide. Press OK to open and go in.");
+        <script src="Seattle_Crime_Stats_2013.js"></script>
+        <script>
+            var INDEX_MONTH = 0;
+            var INDEX_PRECINCT = 1;
+            var INDEX_CRIME = 2;
+            var INDEX_COUNT = 3;
+            var month_names = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+            
+            var crime_types = [];
+            var precincts = [];
+            var months = [];
+            
+            var homicide_by_month = [0,0,0,0,0,0,0,0,0,0,0,0];
+            
+            for (r in crime_stats) {
+                
+                if (precincts.indexOf(crime_stats[r][INDEX_PRECINCT]) == -1) {
+                    precincts.push(crime_stats[r][INDEX_PRECINCT]);
+                }
+                
+                if (crime_types.indexOf(crime_stats[r][INDEX_CRIME]) == -1) {
+                    crime_types.push(crime_stats[r][INDEX_CRIME]);
+                }
+                if (months.indexOf(crime_stats[r][INDEX_MONTH]) == -1) {
+                   months.push(crime_stats[r][INDEX_MONTH]);
+                }
+                if (crime_stats[r][INDEX_CRIME] == "Homicide") {
+                  var monthNum = crime_stats[r][INDEX_MONTH];
+                  homicide_by_month[monthNum-1] += crime_stats[r][INDEX_COUNT];
+                }
+            }
+            
+            document.write("<ul><li><b>Total reports:</b> " + crime_stats.length)
+            document.write("<ul><li><b>Precincts:</b> " + precincts);
+            document.write("<ul><li><b>Crime Types:</b> " + crime_types);
+            document.write("<ul><li><b>Months:</b> " + months)
+            document.write("<ul><li><b>Homicides:</b> " + homicide_by_month)
+            document.write("</ul>")
+            
+        </script>
 
-if (startgame) {
-    //go into garage
-    var vehicle = prompt("You see 3 getaway vehicles. Do you want the hummer, the ducati or the porsche?")
-    if (vehicle == 'hummer') {
-        console.log("It won't start and you've been caught! THE END" + "<br>");
-        document.write("It won't start and you've been caught! THE END" + "<br>");
-    } else if (vehicle == 'ducati') {
-        console.log("It's got a flat tire and you're caught! THE END" + "<br>");
-        document.write("It's got a flat tire and you're caught! THE END" + "<br>");
-    } else {
-        console.log("It's fast and you're making a break for it!" + "<br>");
-        document.write("It's fast and you're making a break for it!" + "<br>");
-        
-        var hours = "You have to stop, rest and hide. How many hours are you going to rest for?";
-        var rest = prompt(hours);
-        rest = Number(rest);
-        
-        if (rest <= 2) {
-            console.log("You wake while it's still dark, and get away!" + "<br>");
-            document.write("You wake while it's still dark, and get away!" + "<br>");
-        } else {
-            console.log("You slept until daylight, and were spotted by local villagers and turned over to the gang." + "<br>");
-            document.write("You slept until daylight, and were spotted by local villagers and turned over to the gang." + "<br>");
-        }
-        console.log("THE END." + "<br>");
-        document.write("THE END." + "<br>")
-        
-    }
-} else {
-    //didn't go in
-    console.log("And that's the world's shortest fable. THE END." + "<br>")
-    document.write("And that's the world's shortest fable. THE END." + "<br>")
-}
-</script>
     </body>
 </html>
