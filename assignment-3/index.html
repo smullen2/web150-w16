@@ -17,29 +17,29 @@
             
             var homicide_by_month = [0,0,0,0,0,0,0,0,0,0,0,0];
             
-            for (r in crime_stats) {
+            for (row in crime_stats) {
                 
-                if (precincts.indexOf(crime_stats[r][INDEX_PRECINCT]) == -1) {
-                    precincts.push(crime_stats[r][INDEX_PRECINCT]);
+                if (precincts.indexOf(crime_stats[row][INDEX_PRECINCT]) == -1) {
+                    precincts.push(crime_stats[row][INDEX_PRECINCT]);
                 }
                 
-                if (crime_types.indexOf(crime_stats[r][INDEX_CRIME]) == -1) {
-                    crime_types.push(crime_stats[r][INDEX_CRIME]);
+                if (crime_types.indexOf(crime_stats[row][INDEX_CRIME]) == -1) {
+                    crime_types.push(crime_stats[row][INDEX_CRIME]);
                 }
-                if (months.indexOf(crime_stats[r][INDEX_MONTH]) == -1) {
-                   months.push(crime_stats[r][INDEX_MONTH]);
+                if (months.indexOf(crime_stats[row][INDEX_MONTH]) == -1) {
+                   months.push(crime_stats[row][INDEX_MONTH]);
                 }
                 if (crime_stats[r][INDEX_CRIME] == "Homicide") {
-                  var monthNum = crime_stats[r][INDEX_MONTH];
-                  homicide_by_month[monthNum-1] += crime_stats[r][INDEX_COUNT];
+                  var monthNum = crime_stats[row][INDEX_MONTH];
+                  homicide_by_month[monthNum-1] += crime_stats[row][INDEX_COUNT];
                 }
             }
             
             document.write("<ul><li><b>Total reports:</b> " + crime_stats.length);
-            document.write("<ul><li><b>Precincts:</b> " + precincts);
-            document.write("<ul><li><b>Crime Types:</b> " + crime_types);
-            document.write("<ul><li><b>Months:</b> " + months);
-            document.write("<ul><li><b>Homicides:</b> " + homicide_by_month);
+            document.write("<li><b>Precincts:</b> " + precincts);
+            document.write("<li><b>Crime Types:</b> " + crime_types);
+            document.write("<li><b>Months:</b> " + months);
+            document.write("<li><b>Homicides:</b> " + homicide_by_month);
             document.write("</ul>");
             
         </script>
