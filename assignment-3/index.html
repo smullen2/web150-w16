@@ -15,7 +15,13 @@
             var precincts = [];
             var months = [];
             
-            var homicide_by_month = [0,0,0,0,0,0,0,0,0,0,0,0];
+            //vars for hw:
+            
+           var number_of_burglaries_in_2013= 0;
+           var burglary_by_precinct = [0,0,0,0,0];
+           var assaults_by_month = [0,0,0,0,0,0,0,0,0,0,0,0];
+           var total_reports = 0;
+           
             
             for (row in crime_stats) {
                 
@@ -26,21 +32,81 @@
                 if (crime_types.indexOf(crime_stats[row][INDEX_CRIME]) == -1) {
                     crime_types.push(crime_stats[row][INDEX_CRIME]);
                 }
-                if (months.indexOf(crime_stats[row][INDEX_MONTH]) == -1) {
-                   months.push(crime_stats[row][INDEX_MONTH]);
-                }
-                if (crime_stats[r][INDEX_CRIME] == "Homicide") {
+
+
+                if (crime_stats[row][INDEX_CRIME] == "Homicide") {
                   var monthNum = crime_stats[row][INDEX_MONTH];
                   homicide_by_month[monthNum-1] += crime_stats[row][INDEX_COUNT];
                 }
+                
+                
+                 if (crime_stats[row][INDEX_CRIME] == "Burglary") {
+                 totalBurg += crime_stats[row][INDEX_COUNT];
+                
+                 }    
+            
+                
             }
             
+                
+             
+            document.write(<h2>Classroom Exercises</h2>)     
             document.write("<ul><li><b>Total reports:</b> " + crime_stats.length);
+            document.write("<li><bTotal No. of Incidents:</b> " + total_reports )
             document.write("<li><b>Precincts:</b> " + precincts);
             document.write("<li><b>Crime Types:</b> " + crime_types);
             document.write("<li><b>Months:</b> " + months);
             document.write("<li><b>Homicides:</b> " + homicide_by_month);
+            //document.write("<li><b>Burglary By Month:</b> " +  burglary_by_month);
+            //document.write("<li><b>Total Burglaries:</b> " +  totalBurg);
+            //document.write("<li><b>Precinct with most burglaries:</b> " +  maxPrecinct);
             document.write("</ul>");
+            
+            document.write("<h2>Homework Section</h2>")
+            
+            //total burglaries in 2013
+            //precinct with the most burglaries in 2013
+            
+            for (row in crime_stats) {
+                
+                if (crime_stats[row][INDEX_CRIME] == "Burglary"){
+                    
+                    number_of_burglaries_in_2013 += crime_stats[row][INDEX_COUNT];
+                    
+                    burglary_by_precinct[precincts.indexOf(crime_stats[row][INDEX_PRECINCT])] += 
+                    crime_stats[row][INDEX_COUNT]
+                }
+            }
+            
+            //month with the fewest assaults
+            
+            if (crime_stats[row][INDEX_CRIME] == "Assault") {
+                monthNum = crime_stats[row][INDEX_MONTH];
+                
+                assaults_by_month[monthNum-1] += crime_stats[row][INDEX_COUNT]
+            }
+            
+            //total burlaries in 2013 print
+            document.write("<ul>");
+            document.write("<li><b>Total burglaries reported in 2013: </b>" +
+            number_of_burglaries_in_2013 + "</li>");
+            
+            //precinct with most burglaries in 2013
+            var precinct_with_most_burglaries = "";
+            
+            var tempNum = 0;
+            
+            for (idx in burglary_by_precinct) {
+                
+                if (burglary_by_precinct[idx] > tempNum) {
+                    
+                    tempNum = burglary_by_precinct[idx];
+                    
+                    precinct_with_most_burglaries = precincts[idx];
+                    
+                }
+            }
+            document.write("<ul>");
             
         </script>
 
