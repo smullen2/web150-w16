@@ -23,6 +23,10 @@
            var total_reports = 0;
            
             
+            //total reports
+            
+            total_reports += crime_stats[row][INDEX_COUNT];
+            
             for (row in crime_stats) {
                 
                 if (precincts.indexOf(crime_stats[row][INDEX_PRECINCT]) == -1) {
