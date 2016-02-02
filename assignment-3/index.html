@@ -106,7 +106,36 @@
                     
                 }
             }
+            
+            document.write("<li><b>Precinct with the most burglaries: </b>" + 
+            precinct_with_most_burglaries + "</li>");
+            
+            //What was avg number of burglaries per precinct?
+            
+            var average_number_of_burglaries = number_of_burglaries_in_2013 / precincts.length;
+            
+            document.write("<li><b>Average number of burglaries per precinct: </b>" + 
+            average_number_of_burglaries + "</li>");
+            
+            //in which were the fewest assaults reported?
+            
+            var month_with_least_assaults = "";
+            
+                tempNum = total_reports;
+                
+            for (idx in assaults_by_month) {
+                if (assaults_by_month[idx] < tempNum) {
+                    tempNum = assaults_by_month[idx];
+                    month_with_least_assaults = month_names[idx];
+                    
+                }
+            }
+            
+            document.write("<li><b>Month with fewest assaults reported: </b>" + month_with_least_assaults + "</li>")
+             
             document.write("<ul>");
+            
+            
             
         </script>
 
