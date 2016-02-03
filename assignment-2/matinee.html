@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Week 2</title>
+        <script>
+        
+        var age = 23;
+        
+        var y = 5;
+        
+        if (age < 18) { //is minor
+            document.write("minor = " + age);
+        }
+        
+        else { // ok to vote
+            if (age >= 65)  {// eligible for SS
+                //x less than 5
+            }  else {
+                document.write("y = " + y);
+            }
+            
+        }
+        
+        var category = (age < 18)  ? "minor" : "adult"; //ternary operator-shorthand if else
+            console.log(category)
+            
+            
+            
+            
+        switch (category) {
+            case "minor":
+                //do stuff for minors
+                break;
+            case "senior":
+                //handling for older person
+                break;
+            default:
+             //anything else
+        }
+            
+            
+            
+            
+            
+            
+        </script>
+
+    </body>
+</html>
