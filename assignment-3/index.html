@@ -21,14 +21,12 @@
            var burglary_by_precinct = [0,0,0,0,0];
            var assaults_by_month = [0,0,0,0,0,0,0,0,0,0,0,0];
            var total_reports = 0;
-           
+           var homicide_by_month = 0;
             
-            //total reports
             
-            total_reports += crime_stats[row][INDEX_COUNT];
             
             for (row in crime_stats) {
-                
+                //if I havent' seen this precince in my rows add it to my list of precincts
                 if (precincts.indexOf(crime_stats[row][INDEX_PRECINCT]) == -1) {
                     precincts.push(crime_stats[row][INDEX_PRECINCT]);
                 }
@@ -45,7 +43,10 @@
                 
                 
                  if (crime_stats[row][INDEX_CRIME] == "Burglary") {
-                 totalBurg += crime_stats[row][INDEX_COUNT];
+                 number_of_burglaries_in_2013 += crime_stats[row][INDEX_COUNT];
+                 
+                  burglary_by_precinct[precincts.indexOf(crime_stats[row][INDEX_PRECINCT])] += 
+                    crime_stats[row][INDEX_COUNT]
                 
                  }    
             
@@ -54,7 +55,7 @@
             
                 
              
-            document.write(<h2>Classroom Exercises</h2>)     
+            document.write("<h2>Classroom Exercises</h2>")     
             document.write("<ul><li><b>Total reports:</b> " + crime_stats.length);
             document.write("<li><bTotal No. of Incidents:</b> " + total_reports )
             document.write("<li><b>Precincts:</b> " + precincts);
@@ -71,16 +72,8 @@
             //total burglaries in 2013
             //precinct with the most burglaries in 2013
             
-            for (row in crime_stats) {
-                
-                if (crime_stats[row][INDEX_CRIME] == "Burglary"){
-                    
-                    number_of_burglaries_in_2013 += crime_stats[row][INDEX_COUNT];
-                    
-                    burglary_by_precinct[precincts.indexOf(crime_stats[row][INDEX_PRECINCT])] += 
-                    crime_stats[row][INDEX_COUNT]
-                }
-            }
+            
+           
             
             //month with the fewest assaults
             
@@ -127,10 +120,10 @@
             
                 tempNum = total_reports;
                 
-            for (idx in assaults_by_month) {
-                if (assaults_by_month[idx] < tempNum) {
-                    tempNum = assaults_by_month[idx];
-                    month_with_least_assaults = month_names[idx];
+            for (i in assaults_by_month) {
+                if (assaults_by_month[i] < tempNum) {
+                    tempNum = assaults_by_month[i];
+                    month_with_least_assaults = month_names[i];
                     
                 }
             }
