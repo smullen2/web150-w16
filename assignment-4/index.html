@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+    </head>
+    <body>
+        <script src="Seattle_Crime_Stats_2013_b.js"></script>
+        <script>
+            var INDEX_MONTH = 0;
+            var INDEX_PRECINCT = 1;
+            var INDEX_CRIME = 2;
+            var INDEX_COUNT = 3;
+            var month_names = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+            
+            var crime_types = [];
+            var precincts = [];
+            var months = [];
+            
+            //vars for hw:
+            
+           var number_of_burglaries_in_2013= 0;
+           var burglary_by_precinct = [0,0,0,0,0];
+           var assaults_by_month = [0,0,0,0,0,0,0,0,0,0,0,0];
+           var total_reports = 0;
+           var homicide_by_month = 0;
+            
+            
+            
+            for (row in crime_stats) {
+                //if I havent' seen this precinct in my rows add it to my list of precincts
+                if (precincts.indexOf(crime_stats[row].precinct) == -1) {
+                    precincts.push(crime_stats[row].precinct);
+                }
+                
+                if (crime_types.indexOf(crime_stats[row].crime) == -1) {
+                    crime_types.push(crime_stats[row].crime);
+                }
+
+
+                if (crime_stats[row].crime == "Assault") {
+                  var monthNum = crime_stats[row].month;
+                  assaults_by_month[monthNum-1] += crime_stats[row].count;
+                }
+                
+                
+                 if (crime_stats[row].crime == "Burglary") {
+                 number_of_burglaries_in_2013 += crime_stats[row].count;
+                 
+                  burglary_by_precinct[precincts.indexOf(crime_stats[row].precinct += 
+                    crime_stats[row][INDE
+                
+                 }    
+            
+                
+            }
+            
+                
+             
+            document.write("<h2>Classroom Exercises</h2>");     
+            document.write("<ul><li><b>Total reports:</b> " + crime_stats.length);
+            document.write("<li><bTotal No. of Incidents:</b> " + total_reports );
+            document.write("<li><b>Precincts:</b> " + precincts);
+            document.write("<li><b>Crime Types:</b> " + crime_types);
+            document.write("<li><b>Months:</b> " + months);
+            document.write("<li><b>Homicides:</b> " + homicide_by_month);
+            document.write("</ul>");
+            
+            document.write("<h2>Homework Section</h2>")
+            
+            //total burglaries in 2013
+            //precinct with the most burglaries in 2013
+            
+            
+           
+            
+            //month with the fewest assaults
+           
+            
+            //total burlaries in 2013 print
+            document.write("<ul>");
+            document.write("<li><b>Total burglaries reported in 2013: </b>" +
+            number_of_burglaries_in_2013 + "</li>");
+            
+            //precinct with most burglaries in 2013
+            var precinct_with_most_burglaries = "";
+            
+            var tempNum = 0;
+            
+            for (idx in burglary_by_precinct) {
+                
+                if (burglary_by_precinct[idx] > tempNum) {
+                    
+                    tempNum = burglary_by_precinct[idx];
+                    
+                    precinct_with_most_burglaries = precincts[idx];
+                    
+                }
+            }
+            
+            document.write("<li><b>Precinct with the most burglaries: </b>" + 
+            precinct_with_most_burglaries + "</li>");
+            
+            //What was avg number of burglaries per precinct?
+            
+            var average_number_of_burglaries = number_of_burglaries_in_2013 / precincts.length;
+            
+            document.write("<li><b>Average number of burglaries per precinct: </b>" + 
+            average_number_of_burglaries + "</li>");
+            
+            //in which were the fewest assaults reported?
+            
+            var month_with_least_assaults = "";
+            
+            
+             var tempNum = 1000;
+                console.log(assaults_by_month);
+            for (idx in assaults_by_month) {
+                if (assaults_by_month[idx] < tempNum) {
+                    tempNum = assaults_by_month[idx];
+                    month_with_least_assaults = month_names[idx];
+                    
+                }
+            }
+            
+            document.write("<li><b>Month with fewest assaults reported: </b>" + month_with_least_assaults + "</li>");
+             
+            document.write("<ul>");
+            
+            
+            
+        </script>
+
+    </body>
+</html>
