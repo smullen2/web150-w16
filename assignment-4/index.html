@@ -33,7 +33,7 @@
                 }
                 
                 if (crime_types.indexOf(crime_stats[row].crime) == -1) {
-                    crime_types.push(crime_stats[row.crime);
+                    crime_types.push(crime_stats[row].crime);
                 }
 
 
@@ -46,7 +46,7 @@
                  if (crime_stats[row].crime == "Burglary") {
                  number_of_burglaries_in_2013 += crime_stats[row].count;
                  
-                  burglary_by_precinct[precincts.indexOf(crime_stats[row].precinct += 
+                  burglary_by_precinct[precincts.indexOf(crime_stats[row].precinct)] += 
                     crime_stats[row].count;
                 
                  }    
