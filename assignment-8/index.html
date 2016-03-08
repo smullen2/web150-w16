@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>First Heading</h1>
+
+<p>first paragraph.</p>
+<canvas id="picasso" height=400 width=400 style="border: 1px solid"></canvas>
+
+<script>
+    
+var canvas = document.querySelector('#picasso');
+var context = canvas.getContext('2d'); 
+
+context.moveTo(0, 0); // make sure pen starts in the right location
+context.lineTo(100, 100); // draw line to end location
+context.lineTo(100, 30);
+context.lineTo(30, 24);
+context.lineWidth=5;
+context.stroke(); // apply styles to make the line visible
+
+gradient.addColorStop("0","magenta");
+
+
+
+</script>
+
+ 
+</body>
+</html>
