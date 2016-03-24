@@ -1,0 +1,73 @@
+<html>
+    <head>
+    </head>
+<body>
+
+	<canvas id="canvas" width="620" height="480" style="border: 4px solid orange;"></canvas>
+
+	<script type="text/javascript">
+	
+		//canvas assignment
+		var c = document.getElementById("canvas");
+		var ctx = c.getContext("2d");
+		// lets put some text on the canvas
+ 		ctx.font="30px Verdana";
+ 		var gradient=ctx.createLinearGradient(250,0,400,0);
+			gradient.addColorStop("0","orange");
+			gradient.addColorStop("0.5","Yellow");
+			gradient.addColorStop("1.0","red");
+		ctx.fillStyle=gradient;
+		ctx.fillText("JavaScript Doodle", 190, 40);
+		
+		// draw a triangle
+		ctx.beginPath();
+		ctx.lineWidth="5";
+		ctx.strokeStyle="red"; 
+		ctx.moveTo(100,100);
+		ctx.lineTo(100,200);
+		ctx.lineTo(200,200);
+		ctx.lineTo(200,100);
+		ctx.stroke();
+
+		// draw a circle
+		ctx.beginPath();
+		ctx.arc(450,150,75,0,2*Math.PI);
+		ctx.stroke();
+		ctx.save();
+		
+		//rotate the canvas
+		ctx.rotate(45*Math.PI/180);
+
+		// draw a rectangle
+		ctx.rect(325,100,100,100);
+		ctx.stroke();
+
+		// fill the rectangle
+		 gradient=ctx.createLinearGradient(325,0,420,0);
+			gradient.addColorStop("0","black");
+			gradient.addColorStop("1.0","white");
+		ctx.fillStyle=gradient;
+		ctx.fillRect(330, 105, 90, 90);
+		ctx.restore();
+		
+		
+		//animation
+		draw();
+		function draw(){
+			ctx.clearRect(300,300,350,350);
+			ctx.save();
+			var now = new Date();
+			ctx.translate(450,450);
+			var sec = now.getSeconds();
+			ctx.rotate(sec * Math.PI/30);
+			ctx.lineWidth = 4;
+			ctx.beginPath();
+			ctx.arc(50,50,10,0,2*Math.PI);
+			ctx.stroke();
+			ctx.restore();
+			window.requestAnimationFrame(draw);
+		}
+
+ 	</script>
+</body>
+</html>

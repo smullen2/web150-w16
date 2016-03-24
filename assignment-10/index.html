@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    </head>
+<body>
+    <h2>Job Application</h2><hr>
+    <form id="myForm" onsubmit="return validateForm(this);">
+<table>  
+        <!-- I added two things here: required and gave each field an id  -->
+        <tr><td>Name:</td><td> <input type="text" name="fullname" required></td></tr>
+        <tr><td>Birthdate:</td><td> <input type="?" name="birthdate" id="birthdate" required></td></tr>
+        <tr><td>Phone:</td><td> <input type="text" name="phone" id="phone" required></td></tr>
+        <tr><td>Zip code:</td><td> <input type="text" name="zip" id="zip" required></td></tr>
+        <tr><td>Profile:</td><td> <textarea rows="4" cols="30" name="profile" id="profile" required></textarea> </td></tr>
+</table>
+<input type="submit" value="Register">
+    </form>
+
+<hr><div id="message"></div>
+
+<script>
+    // the following sets the placeholder for phone and zip code
+    document.getElementById("phone").placeholder = "(nnn) nnn-nnnn";
+    document.getElementById("zip").placeholder = "nnnnn-nnnn";
+
+    function validateForm(myForm) {
+            var birthDay=new Date(document.getElementById("birthdate").value);
+            var today = new Date();
+            var diffYears = (today.getTime()-birthDay.getTime())/31556900000; 
+            console.log(diffYears);
+            var myPhone=document.getElementById("phone").value;
+            var phonePatt = /^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$/;            
+            var myZip=document.getElementById("zip").value;
+            var zipPatt = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+
+    /*
+        1 - Apply validation requirements on each field, as described below.
+        2 - Show a placeholder value for fields that require a specific format
+        3 - Show an appropriate message for invalid entries
+        4 - On successful validation, display the number of times an entered profile mentions javascript, jquery or js
+        
+        Requirements:
+        
+        - applicants age must be >= 18
+        - phone number should be in format: (nnn) nnn-nnnn
+        - zip can be in these formats: nnnnn or nnnnn-nnnn
+   */
+        
+        if(diffYears<18){ //applicants must be age 18 plus
+            document.getElementById("message").innerHTML="Applicants must be age 18 or older.";
+            return false;
+        }else if (!phonePatt.test(myPhone)){ //phone number should be in format: (nnn) nnn-nnnn
+            document.getElementById("message").innerHTML="Please enter Phone in (nnn) nnn-nnnn format.";
+            return false;
+        }else if (!zipPatt.test(myZip)){ //zip must be in these formats: nnnnn or nnnnn-nnnn
+            document.getElementById("message").innerHTML="Please enter Zip Code in nnnnn or nnnnn-nnnn format.";
+            return false;
+        }else{ //form is OK - count from comment 4 above
+            var profile = document.getElementById("profile").value;
+            var cntJavaScript = profile.split(/\b\javascript\b/g).length-1;
+            var cntJquery = profile.split(/\b\jquery\b/g).length-1;
+            var cntJs = profile.split(/\b\js\b/g).length-1;
+            var msg = "javascript was found "+ cntJavaScript + " times, \n" +
+                    "jquery was found " + cntJquery + " times, \n" +
+                    "js was found " + cntJs + " times  \n" +
+                    "in the Profile text box.";
+            alert(msg);
+            return true;
+        } 
+    }
+    
+</script>
+
+</body>
+</html>
